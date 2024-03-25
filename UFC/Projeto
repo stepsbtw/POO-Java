@@ -1,0 +1,41 @@
+PROJETO UFC
+
+Id 1 - Peso pesado : até 120,2kg
+Id 2 - Peso meio-pesado : até 93,0kg
+Id 3 - Peso medio : até 83,9kg
+Id 4 - Peso pena : até 65kg
+
+Lutador tem nome, idade, peso. Atributos privados. UM construtor.
+Nao deve ser possivel criar objetos apartir dessa classe. (ESTATICA)
+Crie os Getters e Setters
+
+4 subclasses de Lutador: PesoPesado, PesoMeioPesado, PesoMedio, PesoPena
+
+Ao printar a referencia de um lutador, deve exibir : nome/idade/peso.
+
+Criar o metodo possiveisLutas em Lutador. Recebe como parametro um array de Lutadores.
+(de qualquer categoria). Deve exibir no console os Lutadores aptos a lutar (MESMA CATEGORIA),
+inclusive, o proprio lutador pode estar no array de lutadores.
+
+Criar o metodo categoriaLutador, nao recebe nada como parametro, retorna a categoria do lutador.
+(Instancia de tal classe)
+
+Criar o metodo sorteioLuta, recebe o array de lutadores dde diversas categorias. Deve retornar,
+aleatoriamente apenas um lutador, APTO a lutar com seu concorrente, o proprio lutador pode aparecer.
+	OBS: ArrayList com todos os lutadores que possuem a categoria do concorrente.
+	OBS2: Utilize Math.random() para escolher aleatoriamente.
+	
+Crie a classe Main e um array de lutadores de tamanho 10. Instancie cada um dos lutadores com nome,
+idade e peso, via console.
+
+EXEMPLOS:
+	Anderson Silva/45/84.0
+	Khabib/31/70.0
+	Jon Jones/32/93.0
+	Thiago Santos/36/93.0
+	Stipe miocic/37/113.5
+	Max Holloway/28/66.0
+	Yoel Romero/42/84.5
+	
+Em seguida receba um numero de 0 a 9. Esse numero servira para selecionar um dos lutadores do array.
+Com base no escolhido, chame o possiveisLutas. Em seguida sorteie o lutador e imprima suas caracteristicas.
