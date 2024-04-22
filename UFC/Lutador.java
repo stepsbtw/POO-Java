@@ -1,5 +1,6 @@
 // CLASSE ABSTRATA PARA EVITAR O INSTANCEAMENTO.
 import java.util.ArrayList;
+import java.util.Random;
 
 public abstract class Lutador {
 	private String nome;
@@ -54,6 +55,9 @@ public abstract class Lutador {
 	}
 	
 	public String categoriaLutador() {
+		// class <Classe>
+		return ((this.getClass()).toString()).split(" ")[1];
+		/*
 		if(this instanceof PesoPesado) {
 			return "Peso Pesado";
 		}else if(this instanceof PesoMeioPesado) {
@@ -63,11 +67,14 @@ public abstract class Lutador {
 		}else {
 			return "Peso Pena";
 		}
+		*/
 	}
 	
 	public Lutador sorteioLuta(Lutador[] lutadores) {
 		ArrayList<Lutador> possiveisLutadores = possiveisLutas(lutadores);
-		int idx = (int)((Math.random()) * possiveisLutadores.size());
+		Random rnd = new Random();
+		int idx = rnd.nextInt(possiveisLutadores.size());
+		//int idx = (int)((Math.random()) * possiveisLutadores.size());
 		Lutador oponente = possiveisLutadores.get(idx);
 		return oponente;
 	}
