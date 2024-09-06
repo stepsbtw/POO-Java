@@ -1,5 +1,6 @@
 package steps;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -15,18 +16,18 @@ public class Utils {
 	}
 	
 	public static void ordena(List<CorpoCeleste> x) {
-		x.sort(null);
+		Collections.sort(x);
 	}
 	
-	public Map<String,CorpoCeleste> retornaDados(Set<String> conjunto) throws FormatoIncorretoException{
+	public static Map<String,CorpoCeleste> retornaDados(Set<String> conjunto) throws FormatoIncorretoException{
 		Iterator<String> i = conjunto.iterator();
-		String corpo = i.next();
-		Map<String, CorpoCeleste> mapa = new HashMap<String,CorpoCeleste>();
+		Map<String, CorpoCeleste> mapa = new HashMap<>();
 		
 		while(i.hasNext()) {
-			String[] s = corpo.split("#");
+			String linha = i.next();
+			String[] s = linha.split("#");
 			if(s.length != 4) {
-				throw new FormatoIncorretoException(corpo);
+				throw new FormatoIncorretoException("FormatoIncorretoException: O formato da String ["+ linha +"] está incorreto. ");
 			}
 			
 			String id = s[0];
@@ -34,18 +35,19 @@ public class Utils {
 			double distancia = Double.parseDouble(s[2]);
 			String tipo = s[3];
 			
+			CorpoCeleste corpoCeleste;
 			if(tipo.equals("E")) {
-				Estrela e = new Estrela(id);
-				e.setNome(nome);
-				e.setDistancia(distancia);
-				mapa.put(id, e);
+				corpoCeleste = new Estrela(id);
 			}
-			if(tipo.equals("P")) {
-				Planeta p = new Planeta(id);
-				p.setNome(nome);
-				p.setDistancia(distancia);
-				mapa.put(id, p);
+			else if(tipo.equals("P")) {
+				corpoCeleste = new Planeta(id);
 			}
+			else {
+				throw new FormatoIncorretoException("FormatoIncorretoException: O formato da String ["+ linha +"] está incorreto. ");
+			}
+			corpoCeleste.setNome(nome);
+            corpoCeleste.setDistancia(distancia);
+            mapa.put(id, corpoCeleste);
 		}
 		return mapa;
 	}

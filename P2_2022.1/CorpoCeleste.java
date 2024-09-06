@@ -21,6 +21,19 @@ public class CorpoCeleste implements Comparable<CorpoCeleste>{
 		this.distancia = distancia;
 	}
 	
+	// dessa forma o override diferencia as subclasses.
+	@Override
+	public boolean equals(Object o) {
+		if(this.getClass() == o.getClass()) {
+			CorpoCeleste c = (CorpoCeleste) o;
+			return this.id.equals(c.id);
+		}
+		else {
+			return false;
+		}
+	}
+	
+	/*
 	@Override
 	public boolean equals(Object o) {
 		if(o instanceof CorpoCeleste) {
@@ -30,7 +43,7 @@ public class CorpoCeleste implements Comparable<CorpoCeleste>{
 		else {
 			return false;
 		}
-	}
+	}*/
 	
 	@Override
 	public int compareTo(CorpoCeleste c) {
@@ -40,5 +53,12 @@ public class CorpoCeleste implements Comparable<CorpoCeleste>{
 	@Override
 	public String toString() {
 		return id + " " + nome + " " + distancia;
+	}
+	
+	// se eu nao der override no hashcode, no mapa posso ter dois ids iguais
+	// sendo colocados em duas chaves diferentes.
+	@Override
+	public int hashCode() {
+		return id.hashCode();
 	}
 }
